@@ -1,7 +1,7 @@
 {
   "name": "micro-tween",
   "version": "0.0.1",
-  "description": "",
+  "description": "timmed down, commonjs version of sole/tween",
   "main": "index.js",
   "scripts": {
     "test": "node test"
