@@ -16,15 +16,18 @@ Additional removals:
 * no constructor function
 * no `getAll`/`removeAll` tweens
 
+Everything else should work!
+
 ### Example
 ```js
 var tween = require('micro-tween');
+var elasticInOut = require('micro-tween/ease/elasticInOut');
 
 tween({ x: 0 })
     .to({ x: 100 })
     .yoyo()
     .repeat(2)
-    .ease(require('micro-tween/ease/elasticInOut'))
+    .ease(elasticInOut)
     .onStart(function() {
         console.log('start');
     })
