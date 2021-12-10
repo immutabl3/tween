@@ -1,46 +1,50 @@
 # micro-tween
 
-A trimmed down, commonjs version of [sole's tween.js](https://github.com/tweenjs/tween.js/)
+A trimmed down, modern version of [sole's tween.js](https://github.com/tweenjs/tween.js/) for treeshaking
 
 `npm i micro-tween`
 
 ### notable changes
 
-Easing functions are located in `micro-tween/ease` to be required in to save on file size. Polyfills for `window.performance.now` have been removed in favor of `Date.now`.
+Easing functions are located in `micro-tween/ease` to be imported to save on file size. Polyfills for `window.performance.now` have been removed in favor of `Date.now` (keeping node support via process.hrtime).
 
 Additional removals:
 * no interpolation
 * no string relative values
 * no safety checks
 * no `this` context in functions, use passed object
-* no constructor function
+* no constructor function/generated code
 * no `getAll`/`removeAll` tweens
 
 Everything else should work!
 
 ### Example
+
 ```js
-var tween = require('micro-tween');
-var elasticInOut = require('micro-tween/ease/elasticInOut');
+import tween, {
+  update,
+  elasticInOut
+} from 'micro-tween';
 
 tween({ x: 0 })
-    .to({ x: 100 })
-    .yoyo()
-    .repeat(2)
-    .ease(elasticInOut)
-    .onStart(function() {
-        console.log('start');
-    })
-    .onUpdate(function(value) {
-        console.log('value: ', value.x);
-    })
-    .onComplete(function() {
-        console.log('complete');
-    })
-    .start();
+  .to({ x: 100 })
+  .yoyo()
+  .repeat(2)
+  .ease(elasticInOut)
+  .onStart(function() {
+    console.log('start');
+  })
+  .onUpdate(function(value) {
+    console.log('value: ', value.x);
+  })
+  .onComplete(function() {
+    console.log('complete');
+  })
+  .start();
 
-var tick = function() {
-  tween.update();
+const tick = function() {
+  update();
   requestAnimationFrame(tick);
-}
+};
+tick();
 ```

@@ -1,10 +1,12 @@
 {
   "name": "micro-tween",
-  "version": "0.0.1",
-  "description": "timmed down, commonjs version of sole/tween",
+  "version": "1.0.0",
+  "description": "trimmed down, modern version of sole/tween for tree shaking",
   "main": "index.js",
+  "sideEffects": false,
+  "type": "module",
   "scripts": {
-    "test": "node test"
+    "test": "node test.js"
   },
   "repository": {
     "type": "git",
